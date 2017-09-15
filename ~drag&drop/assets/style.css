@@ -1,0 +1,209 @@
+/**STYLE: Template versão 4.0 **/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  -webkit-text-size-adjust: none;
+  background: url('img/loading.gif') no-repeat center;
+}
+main {
+  opacity: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #e7e7e7;
+  max-width: 1280px;
+  max-height: 720px;
+  overflow: hidden;
+  margin: auto;
+  font-size: 1.5em;
+  font-weight: 400;
+  font-family: 'Open Sans', sans-serif;
+  box-shadow: 0 0 1.5em #404040;
+  border-radius: 0.2em;
+}
+main img {
+  width: 100%;
+  display: block;
+}
+main h1,
+main h2,
+main h3 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #006c7f;
+  text-transform: uppercase;
+}
+main p {
+  margin-bottom: 0.5em;
+}
+main ul,
+main ol {
+  margin-left: 2em;
+  text-align: left;
+}
+main button {
+  padding: 0.3em 2em;
+  margin-top: 0.7em;
+  background: #006c7f;
+  border-radius: 1em;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: white;
+  font-family: inherit;
+  font-weight: bold;
+  box-sizing: border-box;
+}
+main button:hover {
+  box-shadow: 0 0.1em 0.1em #404040;
+}
+main button:active {
+  transform: translateY(0.1em);
+}
+main .tip {
+  border-bottom: 0.08em dotted #006c7f;
+  cursor: pointer;
+  position: relative;
+}
+main .tip .tooltip {
+  min-width: 100%;
+  top: -120%;
+  left: 0;
+  color: white;
+  background: #006c7f;
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  font-size: 80%;
+  box-shadow: 0 0.1em 0.5em #404040;
+  text-align: center;
+  position: absolute;
+  visibility: hidden;
+}
+main .tip .tooltip:after {
+  position: absolute;
+  content: '';
+  top: 100%;
+  left: 50%;
+  margin-left: -0.5em;
+  border-width: 0.5em;
+  border-style: solid;
+  border-color: #006c7f transparent transparent transparent;
+}
+main .tip:hover .tooltip,
+main .tip:active .tooltip {
+  visibility: visible;
+}
+main .help {
+  position: absolute;
+  padding: 0.05em 0.5em;
+  margin-top: 0;
+  top: 2%;
+  left: 1.4%;
+  border-radius: 50%;
+  background: #006c7f;
+  font-size: 2.3em;
+  color: white;
+  z-index: 4;
+  cursor: pointer;
+}
+main .dimmer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 6;
+}
+main .dimmer .modal {
+  position: absolute;
+  background: white;
+  width: 56%;
+  padding: 2%;
+  top: 20%;
+  left: 20%;
+  box-shadow: 0 0 1em black;
+  border-radius: 0.5em;
+  text-align: center;
+}
+main .content {
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+main .content .draggie {
+  position: absolute;
+  width: 30%;
+  padding: 2%;
+  top: 10%;
+  left: 10%;
+  border-radius: 0.5em;
+  z-index: 4;
+}
+main .content .draggie div {
+  text-align: center;
+  padding: 0.5em;
+  background: white;
+  border: 0.1em solid #006c7f;
+  border-radius: 0.5em;
+  cursor: pointer;
+  margin: 0.5em 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.6);
+}
+main .content .droppie {
+  position: absolute;
+  width: 30%;
+  padding: 2%;
+  top: 10%;
+  right: 10%;
+  z-index: 3;
+}
+main .content .droppie div {
+  text-align: center;
+  padding: 0.5em;
+  background: #ccc;
+  color: #ccc;
+  border: 0.1em solid #006c7f;
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  box-shadow: inset 0 0 0.5em rgba(0, 0, 0, 0.6);
+}
+main .blink {
+  animation: blink 0.5s linear infinite;
+}
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+@media screen and (max-width: 1280px) {
+  main {
+    font-size: 2vw;
+    width: 100vw;
+    height: 56vw;
+  }
+}
+@media screen and (max-height: 720px) {
+  main {
+    font-size: 3.5vh;
+    width: 177vh;
+    height: 100vh;
+  }
+}
