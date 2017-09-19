@@ -8,8 +8,35 @@
  */
 
 (function() {
+  var imgs, preload;
+
+  imgs = ['assets/img/bg.png'];
+
+  preload = function(imgs) {
+    var counter;
+    counter = 0;
+    $(imgs).each(function() {
+      $('<img />').attr('src', this).appendTo('body').css({
+        display: 'none'
+      });
+      return counter++;
+    });
+    if (counter === imgs.length) {
+      $('main').css({
+        opacity: '1'
+      });
+      return $('body').css({
+        background: '#e7e7e7'
+      });
+    }
+  };
+
+  $(window).on('load', function() {
+    return preload(imgs);
+  });
+
   $(function() {
-    var count, ctrl, data, func, imgs, resp;
+    var count, ctrl, data, func, resp;
     count = 0;
     ctrl = [];
     resp = [];
@@ -31,26 +58,7 @@
         pos: [50, 50]
       }
     ];
-    imgs = ['assets/img/bg.png'];
     func = {
-      preload: function(imgs) {
-        var counter;
-        counter = 0;
-        return $(imgs).each(function() {
-          counter++;
-          $('<img />').attr('src', this).appendTo('body').css({
-            display: 'none'
-          });
-          if (counter === imgs.length) {
-            $('main').css({
-              opacity: '1'
-            });
-            return $('body').css({
-              background: '#e7e7e7'
-            });
-          }
-        });
-      },
       help: function() {
         $('.content').fadeOut();
         $('.dimmer').fadeIn();
@@ -115,9 +123,6 @@
         }
       }
     };
-    $(window).on('load', function() {
-      return func.preload(imgs);
-    });
     $(document).on('click', '.start', function() {
       return func.start();
     });

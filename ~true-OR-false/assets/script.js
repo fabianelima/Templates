@@ -8,8 +8,35 @@
  */
 
 (function() {
+  var imgs, preload;
+
+  imgs = ['assets/img/help.png'];
+
+  preload = function(imgs) {
+    var counter;
+    counter = 0;
+    $(imgs).each(function() {
+      $('<img />').attr('src', this).appendTo('body').css({
+        display: 'none'
+      });
+      return counter++;
+    });
+    if (counter === imgs.length) {
+      $('main').css({
+        opacity: '1'
+      });
+      return $('body').css({
+        background: '#e7e7e7'
+      });
+    }
+  };
+
+  $(window).on('load', function() {
+    return preload(imgs);
+  });
+
   $(function() {
-    var alt, count, data, func, imgs, score;
+    var alt, count, data, func, score;
     count = 0;
     score = 0;
     alt = void 0;
@@ -41,26 +68,7 @@
         feed: 'Ut enim ad minim veniam, quis nostrud exercitation.'
       }
     ];
-    imgs = ['assets/img/help.png'];
     func = {
-      preload: function(imgs) {
-        var counter;
-        counter = 0;
-        return $(imgs).each(function() {
-          counter++;
-          $('<img />').attr('src', this).appendTo('body').css({
-            display: 'none'
-          });
-          if (counter === imgs.length) {
-            $('main').css({
-              opacity: '1'
-            });
-            return $('body').css({
-              background: '#e7e7e7'
-            });
-          }
-        });
-      },
       help: function() {
         $('.content').fadeOut();
         $('.dimmer').fadeIn();
@@ -134,9 +142,6 @@
         }
       }
     };
-    $(window).on('load', function() {
-      return func.preload(imgs);
-    });
     $(document).on('click', '.start', function() {
       return func.start();
     });

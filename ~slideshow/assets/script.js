@@ -8,30 +8,38 @@
  */
 
 (function() {
+  var imgs, preload;
+
+  imgs = ['assets/img/img1.png', 'assets/img/img2.png', 'assets/img/img3.png', 'assets/img/img4.png', 'assets/img/img5.png'];
+
+  preload = function(imgs) {
+    var counter;
+    counter = 0;
+    $(imgs).each(function() {
+      $('<img />').attr('src', this).appendTo('body').css({
+        display: 'none'
+      });
+      return counter++;
+    });
+    if (counter === imgs.length) {
+      $('main').css({
+        opacity: '1'
+      });
+      return $('body').css({
+        background: '#e7e7e7'
+      });
+    }
+  };
+
+  $(window).on('load', function() {
+    return preload(imgs);
+  });
+
   $(function() {
-    var count, data, func, imgs;
+    var count, data, func;
     count = 0;
     data = ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'];
-    imgs = ['assets/img/img1.png', 'assets/img/img2.png', 'assets/img/img3.png', 'assets/img/img4.png', 'assets/img/img5.png'];
     func = {
-      preload: function(imgs) {
-        var counter;
-        counter = 0;
-        return $(imgs).each(function() {
-          counter++;
-          $('<img />').attr('src', this).appendTo('body').css({
-            display: 'none'
-          });
-          if (counter === imgs.length) {
-            $('main').css({
-              opacity: '1'
-            });
-            return $('body').css({
-              background: '#e7e7e7'
-            });
-          }
-        });
-      },
       help: function() {
         $('.content').fadeOut();
         $('.dimmer').fadeIn();
@@ -86,9 +94,6 @@
         }
       }
     };
-    $(window).on('load', function() {
-      return func.preload(imgs);
-    });
     $(document).on('click', '.start', function() {
       return func.start();
     });

@@ -5,6 +5,31 @@
 
 		Código: Fabiane Lima
 ###
+
+# ----- Pré-carregamento das imagens ----- #
+imgs =	[
+			'assets/img/img1.png'
+			'assets/img/img2.png'
+			'assets/img/img3.png'
+			'assets/img/img4.png'
+			'assets/img/img5.png'
+		]
+
+preload = (imgs) ->
+	counter = 0
+
+	$(imgs).each ->
+		$('<img />').attr('src', this).appendTo('body').css { display: 'none' }
+		counter++
+
+	if counter is imgs.length
+		$('main').css { opacity: '1' }
+		$('body').css { background: '#e7e7e7' }
+
+$(window).on 'load', -> preload(imgs)
+
+
+# ----- Funções e dados ----- #
 $ ->
 	count = 0
 	data =	[
@@ -14,25 +39,7 @@ $ ->
 				'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
 				'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
 			]
-	imgs =	[
-				'assets/img/img1.png'
-				'assets/img/img2.png'
-				'assets/img/img3.png'
-				'assets/img/img4.png'
-				'assets/img/img5.png'
-			]
 	func =
-		preload: (imgs) ->
-			counter = 0
-
-			$(imgs).each ->
-				counter++
-				$('<img />').attr('src', this).appendTo('body').css { display: 'none' }
-
-				if counter is imgs.length
-					$('main').css { opacity: '1' }
-					$('body').css { background: '#e7e7e7' }
-
 		help: ->
 			$('.content').fadeOut()
 			$('.dimmer').fadeIn()
@@ -80,7 +87,8 @@ $ ->
 
 				if count is 0 then $('.prev').css { pointerEvents: 'none', opacity: '0.6' }
 
-	$(window).on 'load', -> func.preload(imgs)
+
+# ----- Eventos ----- #
 	$(document).on 'click', '.start', -> func.start()
 	$(document).on 'click', '.help', -> func.help()
 	$(document).on 'click', '.info', -> func.info()
